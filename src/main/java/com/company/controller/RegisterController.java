@@ -39,26 +39,25 @@ public class RegisterController extends HttpServlet {
             if(Objects.isNull(user.getName()) || user.getName().isBlank())
                 sb.append("Name,");
             if(Objects.isNull(user.getUserName()) || user.getUserName().isBlank())
-                sb.append(" userName,");
+                sb.append(" userName, ");
             if(Objects.isNull(user.getPassword()) || user.getPassword().isBlank())
                 sb.append(" password");
             if(sb.charAt(sb.length() - 1) == ','){
                 sb.setCharAt(sb.length() - 1, ' ');
             }
             resp.
-                    getWriter().write("<h1 style=\\\"color: red\\\">\" + sb + \" is required\"  + \"</h1>\"");
+                    getWriter().write("<h1 style=\"color: red\">" + sb + " is required"  + "</h1>");
             rd = req.getRequestDispatcher(RegisterController.BASE_PAGE);
             rd.include(req,resp);
 
         }else {
             if(!Objects.equals(user.getPasswordConfirm(), user.getPassword())){
                 resp.
-                        getWriter().write("<h1 style=\\\"color: red\\\">Password doesn't match</h1>");
+                        getWriter().write("<h1 style=\"color: red\">Password doesn't match</h1>");
                 rd = req.getRequestDispatcher(RegisterController.BASE_PAGE);
                 rd.include(req,resp);
             }
             else {
-
                 RegisterService registerService = RegisterService.getInstance();
                 boolean isRegistered = registerService.register(user);
             }

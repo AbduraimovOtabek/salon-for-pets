@@ -11,15 +11,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link href="${contextPath}/resource/bootstrap.min.css" rel="stylesheet">
+    <%--    <link href="${contextPath}/resource/bootstrap.min.css" rel="stylesheet">--%>
 </head>
 <body>
 <div class="container">
-    <h1>User Register Form:</h1>
+    <h1 style="color: darkmagenta  ;margin-left: 350px" >Online Test Platform</h1>
     <div class="card">
         <div class="card-body">
             <form action="<%=request.getContextPath()%>/register" method="post">
-
 
                 <div class="form-group row">
                     <label for="name" class="col-sm-2 col-form-label">Name</label>
@@ -39,7 +38,7 @@
                                class="form-control"
                                id="userName"
                                name="userName"
-                               placeholder="Enter email">
+                               placeholder="Enter user name">
                     </div>
                 </div>
 
@@ -53,8 +52,17 @@
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <label for="password" class="col-sm-2 col-form-label">Pre Password</label>
+                    <div class="col-sm-7">
+                        <input
+                                id="prePassword"
+                                type="password" class="form-control" name="prePassword"
+                                placeholder="Enter Password">
+                    </div>
+                </div>
 
-                <a href="/login" class="btn btn-primary">Login</a>
+
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
