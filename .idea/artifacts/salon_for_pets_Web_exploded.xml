@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="salon-for-pets:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/salon_for_pets_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="salon-for-pets/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="salon-for-pets" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.26" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:4.0.1" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
