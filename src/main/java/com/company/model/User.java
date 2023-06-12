@@ -19,6 +19,8 @@ public class User {
 
     private String password;
 
+    private String passwordConfirm;
+
     private LocalDate loggedDate;
 
     private RoleName role;
