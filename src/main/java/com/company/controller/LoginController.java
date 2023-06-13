@@ -26,37 +26,6 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        User user = User.builder()
-//                .userName(req.getParameter("userName"))
-//                .password(req.getParameter("password"))
-//                .build();
-//        RequestDispatcher rd;
-//
-//        if (Objects.isNull(user.getUserName()) || user.getUserName().isBlank() ||
-//                Objects.isNull(user.getPassword()) || user.getPassword().isBlank()) {
-//            resp.getWriter()
-//                    .write("<h1 style=\"color: red\">" + "Email or password is required" + "</h1>");
-//            rd = req.getRequestDispatcher("/login");
-//            rd.include(req, resp);
-//
-//        } else {
-//            LoginService loginService = LoginService.getInstance();
-//            boolean isLogin = loginService.login(user);
-//
-//            if (isLogin) {
-//                HttpSession session = req.getSession();
-//
-//                session.setAttribute(AppConst.CURRENT_USER, user);
-//                req.setAttribute(AppConst.CURRENT_USER, user);
-//                resp.sendRedirect("CabinetController.BASE_PATH");
-//            } else {
-//                resp
-//                        .getWriter()
-//                        .write("<h1 style=\\\"color: red\\\">Wrong email or password!</h1>");
-//                rd = req.getRequestDispatcher("/login.jsp");
-//                rd.include(req, resp);
-//            }
-//        }
 
         User user = User.builder()
                 .userName(req.getParameter("userName"))
@@ -79,12 +48,12 @@ public class LoginController extends HttpServlet {
 
             if (isLogin) {
                 HttpSession session = req.getSession();
-
                 session.setAttribute(AppConst.CURRENT_USER, user);
                 resp.sendRedirect(CabinetController.BASE_PATH);
 
             } else {
-                resp.getWriter()
+                resp.
+                        getWriter()
                         .write("<div align=\"center\"> <h1 style=\"color: green\">WRONG EMAIL OR PASSWORD! PLEASE TRY AGAIN</h1>  </div>");
                 requestDispatcher = req.getRequestDispatcher("login.jsp");
                 requestDispatcher.include(req, resp);

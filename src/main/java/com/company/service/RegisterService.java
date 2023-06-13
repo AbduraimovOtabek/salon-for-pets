@@ -30,7 +30,6 @@ public class RegisterService {
         preparedStatement.setString(1, user.getUserName());
 
         ResultSet resultSet = preparedStatement.executeQuery();
-
         resultSet.next();
         int countOfUsers = resultSet.getInt(1);
 

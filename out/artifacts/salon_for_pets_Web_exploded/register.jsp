@@ -7,14 +7,14 @@
 <html>
 <head>
     <meta charset="ISO-8859-1">
-    <title>Insert title here</title>
+    <title>salon-for-pets</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 <body>
 <div class="container">
-    <h1 style="color: darkmagenta  ;margin-left: 350px" >Salon For Pets</h1>
+    <h1 style="color: darkmagenta  ;margin-left: 350px">Salon For Pets</h1>
     <div class="card">
         <div class="card-body">
             <form action="<%=request.getContextPath()%>/register" method="post">
@@ -51,19 +51,8 @@
                     </div>
                 </div>
 
-<%--                <div class="form-group row">--%>
-<%--                    <label for="password" class="col-sm-2 col-form-label">Pre Password</label>--%>
-<%--                    <div class="col-sm-7">--%>
-<%--                        <input--%>
-<%--                                id="prePassword"--%>
-<%--                                type="password" class="form-control" name="prePassword"--%>
-<%--                                placeholder="Enter Password">--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-
                 <div>
-        </div>
-
+                </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -72,7 +61,6 @@
                     <br>
                     <a class="btn btn-primary"
                        href="${pageContext.request.contextPath}/login" role="button">Login</a>
-
                 </div>
             </div>
         </div>

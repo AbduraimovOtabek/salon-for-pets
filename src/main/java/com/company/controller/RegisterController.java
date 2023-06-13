@@ -27,13 +27,15 @@ public class RegisterController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         User user = User.builder().
                 name(req.getParameter("name"))
                 .userName(req.getParameter("userName"))
                 .password(req.getParameter("password"))
-//                .passwordConfirm(req.getParameter("passwordConfirm"))
                 .build();
+
         RequestDispatcher rd;
+
         if (Objects.isNull(user.getUserName()) || user.getUserName().isBlank() ||
                 Objects.isNull(user.getName()) || user.getName().isBlank() ||
                 Objects.isNull(user.getPassword()) || user.getPassword().isBlank()) {
@@ -47,19 +49,15 @@ public class RegisterController extends HttpServlet {
             if (sb.charAt(sb.length() - 1) == ',') {
                 sb.setCharAt(sb.length() - 1, ' ');
             }
+
             resp.
-                    getWriter().write("<h1 style=\"color: red\">" + sb + " is required" + "</h1>");
+                    getWriter()
+                    .write("<h1 style=\"color: red\">" + sb + " is required" + "</h1>");
             rd = req.getRequestDispatcher(RegisterController.BASE_PAGE);
             rd.include(req, resp);
 
         } else {
-//        } else {
-//            if (!Objects.equals(user.getPasswordConfirm(), user.getPassword())) {
-//                resp.
-//                        getWriter().write("<h1 style=\"color: red\">Password doesn't match</h1>");
-//                rd = req.getRequestDispatcher(RegisterController.BASE_PAGE);
-//                rd.include(req, resp);
-//            } else {
+
             RegisterService registerService = RegisterService.getInstance();
             boolean isRegistered = registerService.register(user);
 
@@ -69,7 +67,8 @@ public class RegisterController extends HttpServlet {
                 resp.sendRedirect("/register-successful.jsp");
             } else {
                 resp
-                        .getWriter().write("<h1 style=\"color: red\">Email already exists</h1>");
+                        .getWriter()
+                        .write("<h1 style=\"color: red\">Email already exists</h1>");
                 rd = req.getRequestDispatcher("/register.jsp");
                 rd.include(req, resp);
             }
