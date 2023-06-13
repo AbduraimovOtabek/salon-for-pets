@@ -41,13 +41,18 @@
                     </div>
                 </div>
 
-                <div>
-                    <a class="btn btn-outline-success btn-lg btn-block"
-                       href="${pageContext.request.contextPath}/register" role="button">Register</a>
-                </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+
+            <div>
+                <div>
+                    <br>
+                    <a button type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/register"
+                       role="button">Register</a>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

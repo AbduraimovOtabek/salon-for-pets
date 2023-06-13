@@ -21,7 +21,7 @@ public class RegisterController extends HttpServlet {
     public static final String BASE_PAGE = "register.jsp";
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.sendRedirect(RegisterController.BASE_PAGE);
     }
 
@@ -31,7 +31,7 @@ public class RegisterController extends HttpServlet {
                 name(req.getParameter("name"))
                 .userName(req.getParameter("userName"))
                 .password(req.getParameter("password"))
-                .passwordConfirm(req.getParameter("passwordConfirm"))
+//                .passwordConfirm(req.getParameter("passwordConfirm"))
                 .build();
         RequestDispatcher rd;
         if (Objects.isNull(user.getUserName()) || user.getUserName().isBlank() ||
@@ -53,29 +53,30 @@ public class RegisterController extends HttpServlet {
             rd.include(req, resp);
 
         } else {
-            if (!Objects.equals(user.getPasswordConfirm(), user.getPassword())) {
-                resp.
-                        getWriter().write("<h1 style=\"color: red\">Password doesn't match</h1>");
-                rd = req.getRequestDispatcher(RegisterController.BASE_PAGE);
-                rd.include(req, resp);
+//        } else {
+//            if (!Objects.equals(user.getPasswordConfirm(), user.getPassword())) {
+//                resp.
+//                        getWriter().write("<h1 style=\"color: red\">Password doesn't match</h1>");
+//                rd = req.getRequestDispatcher(RegisterController.BASE_PAGE);
+//                rd.include(req, resp);
+//            } else {
+            RegisterService registerService = RegisterService.getInstance();
+            boolean isRegistered = registerService.register(user);
+
+            if (isRegistered) {
+                HttpSession httpSession = req.getSession();
+                httpSession.setAttribute(AppConst.CURRENT_USER, user);
+                resp.sendRedirect("/register-successful.jsp");
             } else {
-                RegisterService registerService = RegisterService.getInstance();
-                boolean isRegistered = registerService.register(user);
-
-                if (isRegistered) {
-                    HttpSession httpSession = req.getSession();
-                    httpSession.setAttribute(AppConst.CURRENT_USER, user);
-                    resp.sendRedirect(LoginController.BASE_PATH);
-                } else {
-                    resp
-                            .getWriter().write("<h1 style=\"color: red\">Email already exists</h1>");
-                    rd = req.getRequestDispatcher("RegisterController.BASE_PAGE");
-                    rd.include(req, resp);
-                }
+                resp
+                        .getWriter().write("<h1 style=\"color: red\">Email already exists</h1>");
+                rd = req.getRequestDispatcher("/register.jsp");
+                rd.include(req, resp);
             }
-
         }
 
     }
 
 }
+
+

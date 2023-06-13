@@ -51,22 +51,30 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
-                    <label for="password" class="col-sm-2 col-form-label">Pre Password</label>
-                    <div class="col-sm-7">
-                        <input
-                                id="prePassword"
-                                type="password" class="form-control" name="prePassword"
-                                placeholder="Enter Password">
-                    </div>
-                </div>
+<%--                <div class="form-group row">--%>
+<%--                    <label for="password" class="col-sm-2 col-form-label">Pre Password</label>--%>
+<%--                    <div class="col-sm-7">--%>
+<%--                        <input--%>
+<%--                                id="prePassword"--%>
+<%--                                type="password" class="form-control" name="prePassword"--%>
+<%--                                placeholder="Enter Password">--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
                 <div>
-                <a class="btn btn-outline-primary btn-lg btn-block" href="${pageContext.request.contextPath}/login" role="button">Login</a>
         </div>
+
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <div>
+                <div>
+                    <br>
+                    <a class="btn btn-primary"
+                       href="${pageContext.request.contextPath}/login" role="button">Login</a>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

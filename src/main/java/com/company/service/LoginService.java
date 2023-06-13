@@ -1,6 +1,7 @@
 package com.company.service;
 
 import com.company.model.User;
+import com.company.role.RoleName;
 import com.company.utils.CommonUtils;
 import lombok.SneakyThrows;
 
@@ -23,9 +24,11 @@ public class LoginService {
 
     @SneakyThrows
     public boolean login(User user) {
+
         Connection cn = CommonUtils.getConnection();
 
         PreparedStatement ps = cn.prepareStatement("SELECT COUNT(1) FROM users WHERE user_name = ? AND password = ?");
+       
         ps.setString(1, user.getUserName());
         ps.setString(2, user.getPassword());
 
@@ -33,19 +36,21 @@ public class LoginService {
 
         rs.next();
         int countOfUsers = rs.getInt(1);
+
         if (countOfUsers == 0)
             return false;
 
         PreparedStatement ps2 = cn.prepareStatement("SELECT * FROM users WHERE user_name = ? AND password = ?");
-        ps.setString(1, user.getUserName());
-        ps.setString(2, user.getPassword());
+        ps2.setString(1, user.getUserName());
+        ps2.setString(2, user.getPassword());
 
-        ResultSet rs2 = ps2.executeQuery();
+        ResultSet rst = ps2.executeQuery();
 
-        if (rs2.next()) {
-            user.setId(rs.getInt("id"));
-            user.setName(rs.getString("name"));
-            //  user.setRole(RoleName.valueOf(rs.getString("role")));
+        if (rst.next()) {
+            user.setId(rst.getInt("user_id"));
+            user.setName(rst.getString("name"));
+            user.setUserName(rst.getString("user_name"));
+            user.setRole(RoleName.valueOf(rst.getString("role_name")));
         }
         return true;
     }

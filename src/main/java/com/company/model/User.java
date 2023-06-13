@@ -17,7 +17,7 @@ public class User {
 
     private String password;
 
-    private String passwordConfirm;
+//    private String passwordConfirm;
 
     private RoleName role;
 
