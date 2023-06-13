@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Builder
 @Getter
 @Setter
@@ -20,8 +18,6 @@ public class User {
     private String password;
 
     private String passwordConfirm;
-
-    private LocalDate loggedDate;
 
     private RoleName role;
 

@@ -18,10 +18,10 @@ import java.util.Objects;
 public class RegisterController extends HttpServlet {
 
     public static final String BASE_PATH = "/register";
-    public static final String BASE_PAGE= "register.jsp";
+    public static final String BASE_PAGE = "register.jsp";
 
     @Override
-    protected void doGet(HttpServletRequest req , HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
         resp.sendRedirect(RegisterController.BASE_PAGE);
     }
 
@@ -34,45 +34,43 @@ public class RegisterController extends HttpServlet {
                 .passwordConfirm(req.getParameter("passwordConfirm"))
                 .build();
         RequestDispatcher rd;
-        if(Objects.isNull(user.getUserName())|| user.getUserName().isBlank()||
-                Objects.isNull(user.getName())|| user.getName().isBlank() ||
-                        Objects.isNull(user.getPassword()) || user.getPassword().isBlank()){
+        if (Objects.isNull(user.getUserName()) || user.getUserName().isBlank() ||
+                Objects.isNull(user.getName()) || user.getName().isBlank() ||
+                Objects.isNull(user.getPassword()) || user.getPassword().isBlank()) {
             StringBuilder sb = new StringBuilder();
-            if(Objects.isNull(user.getName()) || user.getName().isBlank())
+            if (Objects.isNull(user.getName()) || user.getName().isBlank())
                 sb.append("Name,");
-            if(Objects.isNull(user.getUserName()) || user.getUserName().isBlank())
+            if (Objects.isNull(user.getUserName()) || user.getUserName().isBlank())
                 sb.append(" userName, ");
-            if(Objects.isNull(user.getPassword()) || user.getPassword().isBlank())
+            if (Objects.isNull(user.getPassword()) || user.getPassword().isBlank())
                 sb.append(" password");
-            if(sb.charAt(sb.length() - 1) == ','){
+            if (sb.charAt(sb.length() - 1) == ',') {
                 sb.setCharAt(sb.length() - 1, ' ');
             }
             resp.
-                    getWriter().write("<h1 style=\"color: red\">" + sb + " is required"  + "</h1>");
+                    getWriter().write("<h1 style=\"color: red\">" + sb + " is required" + "</h1>");
             rd = req.getRequestDispatcher(RegisterController.BASE_PAGE);
-            rd.include(req,resp);
+            rd.include(req, resp);
 
-        }else {
-            if(!Objects.equals(user.getPasswordConfirm(), user.getPassword())){
+        } else {
+            if (!Objects.equals(user.getPasswordConfirm(), user.getPassword())) {
                 resp.
                         getWriter().write("<h1 style=\"color: red\">Password doesn't match</h1>");
                 rd = req.getRequestDispatcher(RegisterController.BASE_PAGE);
-                rd.include(req,resp);
-            }
-            else {
+                rd.include(req, resp);
+            } else {
                 RegisterService registerService = RegisterService.getInstance();
                 boolean isRegistered = registerService.register(user);
 
-                if(isRegistered){
+                if (isRegistered) {
                     HttpSession httpSession = req.getSession();
-                    httpSession.setAttribute(AppConst.CURRENT_USER,user);
+                    httpSession.setAttribute(AppConst.CURRENT_USER, user);
                     resp.sendRedirect(LoginController.BASE_PATH);
-                }
-                else {
+                } else {
                     resp
                             .getWriter().write("<h1 style=\"color: red\">Email already exists</h1>");
                     rd = req.getRequestDispatcher("RegisterController.BASE_PAGE");
-                    rd.include(req,resp);
+                    rd.include(req, resp);
                 }
             }
 

@@ -34,13 +34,12 @@ public class RegisterService {
         resultSet.next();
         int countOfUsers = resultSet.getInt(1);
 
-        if (countOfUsers > 1)
-            return false;
+        if (countOfUsers > 1) return false;
 
         PreparedStatement ps = connection.prepareStatement("INSERT INTO users(name,user_name,password) VALUES (?,?,?)");
-        ps.setString(1,user.getName());
-        ps.setString(2,user.getUserName());
-        ps.setString(3,user.getPassword());
+        ps.setString(1, user.getName());
+        ps.setString(2, user.getUserName());
+        ps.setString(3, user.getPassword());
         ps.execute();
 
         return true;
